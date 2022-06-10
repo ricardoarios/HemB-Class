@@ -1,4 +1,4 @@
-# Hema-Class – v1.0
+# HemaB-Class – v1.0
 
 ### Thanks for your interest in using HemB-Class.
 
