@@ -10,7 +10,7 @@ We designed a machine learning framework for hemophilia B classification (HemB-C
 
 We predicted the severity of all residues not yet reported in the medical literature and confirmed its agreement with clinical data, and with in vitro mutagenesis assays.
 
-Here you will find the datasets and the source code used in the manuscript “A machine learning framework predicts the clinical severity of Hemophilia B caused by point-mutations” (https://www.frontiersin.org/articles/10.3389/fbinf.2022.912112/full), by Tiago Lopes, Tatiane Nogueira and Ricardo Rios (Frontiers in Bioinformatics, 2022).
+Here you will find the datasets and the source code used in the manuscript “A machine learning framework predicts the clinical severity of Hemophilia B caused by point-mutations” ([go]([http://stackoverflow.com](https://www.frontiersin.org/articles/10.3389/fbinf.2022.912112/full)){:target="_blank"}), by Tiago Lopes, Tatiane Nogueira and Ricardo Rios (Frontiers in Bioinformatics, 2022).
 
 Please note that we cannot make available the data from other databases; to access the complete mutation datasets, please visit the EAHAD and the CHAMPS websites.
 
