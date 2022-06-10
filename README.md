@@ -1,6 +1,6 @@
 # Hema-Class – v1.0
 
-### Thanks for your interest in using Hema-Class.
+### Thanks for your interest in using HemB-Class.
 
 <img align="right" src="images/HemB-Class.png">
 
