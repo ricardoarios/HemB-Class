@@ -35,8 +35,7 @@ library(BBmisc)
 source("src/preprocessing/cvClass.R")
 
 
-#hemo.data<-read.table(file="HemB_Dataset_SENAI_cleaned_v3-label.csv", sep=",", header = T)
-hemo.data<-read.table(file="HemB_Dataset_SENAI_v5a.csv", sep="\t", header = T)
+hemo.data<-read.table(file="dataset/HemB_Dataset_v5a.csv", sep="\t", header = T)
 hemo.data<-subset(hemo.data, select = -c(cDNA, AA_HGVS, AA_Legacy, Domain, Protein_Change, aa1, aa2))
 #head(hemo.data)
 #hemo.data<-subset(hemo.data, select = -c(degree, kcore))
