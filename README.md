@@ -37,6 +37,8 @@ To make predictions and produce roc curves, run one of the following commands:
 Rscript src/visualization/prediction-visualization.R 
 source("src/visualization/prediction-visualization.R")
 ```
+In this code, the prediction ensemble was created only combining two classifers to illustrate our contribution. Users can modify it to better address their applications.
+
 To reproduce the heatmap published in our mansucript, run one of the following commands:
 
 ```Prolog
