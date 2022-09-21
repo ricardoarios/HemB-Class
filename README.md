@@ -24,32 +24,24 @@ The organization of the material is:
 To reproduce all experiments using individual ML classification models on the training dataset, please run the source codes:
 
 ```Prolog
-Rscript src/ml/prediction-visualization.R 
-Rscript src/ml/prediction-visualization-aug.R
+Rscript workdir/run-all.R
 ```
-
 You can also open R and run:
 
 ```Prolog
-source("src/ml/prediction-visualization.R")
+source("workdir/run-all.R")
 ```
+To make predictions and produce roc curves, run one of the following commands:
 
 ```Prolog
-source("src/ml/prediction-visualization-aug.R")
+Rscript src/visualization/prediction-visualization.R 
+source("src/visualization/prediction-visualization.R")
 ```
-
-To reproduce our figures and results, we recommend to run all codes from the workdir directory. For example:
+To reproduce the heatmap published in our mansucript, run one of the following commands:
 
 ```Prolog
-cd workdir/
-
-Rscript ../src/ml/make_heatmap_predictions.R
-```
-
-You can also open R, from the workdir directory, and run:
-
-```Prolog
-source("../src/ml/make_heatmap_predictions.R")
+Rscript src/visualization/make_heatmap_predictions.R
+source("src/visualization/make_heatmap_predictions.R")
 ```
 
 If you find any issues with the code, please contact us: tiago-jose@ncchd.go.jp, ricardoar@ufba.br, tatiane.nogueira@ufba.br
