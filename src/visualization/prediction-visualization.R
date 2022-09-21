@@ -90,8 +90,8 @@ output<-xgboost.classif(train.task, test.task = NULL, .MEASURE, save.model = fil
 
 ############################################
 #####... loading final test dataset ...#####
-predict.dataset<-read.table(file="dataset/src/dataset_for_prediction_all_positions_v2.csv", 
-	sep=";", header = T)
+predict.dataset<-read.table(file="dataset/Hemophilia_B_all_instances_for_prediction_v5a.csv", 
+	sep="\t", header = T)
 na.rows<-c()
 for(i in 1:ncol(predict.dataset)){
   na.rows<-c(na.rows, which(is.na(predict.dataset[,i])))
@@ -100,24 +100,18 @@ if(length(na.rows) > 0){
   predict.dataset<-predict.dataset[-unique(na.rows), ]
 }
 
-### we reload the training dataset again just to make sure
-# no training instance is again used during the test phase
-dataHemophilia<-load.full.dataset(dataset = "dataset/severity-FVIII-Activity-Regression.Rdata")
-dataHemophilia<-dataHemophilia[-c(dataHemophilia[,-c(1:9,ncol(dataHemophilia))] %>% duplicated() %>% which()), ]
+test<-subset(predict.dataset, select = -c(AA_HGVS, AA_Legacy, Protein_Change, aa1, aa2))
+test$Reported_Severity<-rep("Severe", nrow(test))
+test<-test[, colnames(train)]
 
-
-test<-anti_join(predict.dataset[,-c(1:9)], dataHemophilia[,-c(1:9, ncol(dataHemophilia))])
-
-test<-predict.dataset[, -c(1:9)] #%>% select(AA_dist, areaSAS, areaSES, consurfDB, degree, burts, pr)
-test$group<-rep("Others", nrow(test))
-
-test.task <- mlr::makeClassifTask(data = test, target = "group", positive = "Others")
+test.task <- mlr::makeClassifTask(data = test, target = "Reported_Severity", positive = "Severe")
 ############################################
 
 
 #####... using pretrained models to classify the test dataset ...#####
 for(i in 1:length(file.models)){
-  
+ 
+  cat("Predicting using ", file.models[i], "\n")	
   load(file=file.models[i])
   output<-predict(model, test.task)
   
@@ -187,9 +181,8 @@ naive.best.model$id<-"Naive Bayes"
 class.learner <- makeLearner("classif.xgboost", predict.type = "prob", 
                              par.vals = list(
                                objective = "binary:logistic",
-                               eval_metric = "error")
+                               eval_metric = "error", nrounds = 100L)
 )
-class.learner$par.vals <- list(importance = TRUE)
 
 load(paste(sep="", file.models[6],  ".tune"))
 
@@ -207,10 +200,4 @@ df = generateThreshVsPerfData(bmr, measures = list(fpr, tpr))
 pdf(file="results/roc-curve.pdf")
 plotROCCurves(df)
 dev.off()
-
-#mlr::performance(bmr, mlr::auc)
-
-
-
-
 
